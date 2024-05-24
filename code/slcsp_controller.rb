@@ -1,9 +1,11 @@
 module Api
   module V1
+    # this is a module for the slcsp controller
+    # is a class that inherits from ActionController::Base
     class SlcspController < ActionController::Base
       def plan
         begin
-          request_xml = request.body.read
+          request_xml = request.body.data.read
           parsed_request = HappyMapper.parse(request_xml)
           @plan = find_slcsp(Date::strptime(parsed_request.coverage_start, "%Y%m%d"))
 
